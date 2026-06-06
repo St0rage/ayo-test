@@ -1,14 +1,12 @@
 import BasePage from "./base-page";
 
-export class VerificationPage extends BasePage {
-  constructor(web: WebdriverIO.Browser) {
-    super(web);
-  }
-
+class VerificationPage extends BasePage {
   /* --- LOCATORS --- */
   public get verificationTitle() {
-    return this.web.$(".frame-text>h3");
+    return browser.$(".frame-text>h3");
   }
 
   /* --- ACTIONS --- */
 }
+
+export default new VerificationPage();

@@ -1,42 +1,38 @@
 import BasePage from "./base-page";
 
-export class GlobalPage extends BasePage {
-  constructor(web: WebdriverIO.Browser) {
-    super(web);
-  }
-
+class GlobalPage extends BasePage {
   /* --- LOCATORS --- */
 
   public get daftarBtn() {
-    return this.web.$("#sign-up-btn");
+    return browser.$("#sign-up-btn");
   }
 
   public get registerField() {
-    return this.web.$("#phone-number");
+    return browser.$("#phone-number");
   }
 
   public get registerFieldAlert() {
-    return this.web.$(".text-error");
+    return browser.$(".text-error");
   }
 
   public get registerSelanjutnyaBtn() {
-    return this.web.$("#btn-next-register");
+    return browser.$("#btn-next-register");
   }
 
   public get masukBtn() {
-    return this.web.$("#sign-in-btn");
+    return browser.$("#sign-in-btn");
   }
 
   public get masukField() {
-    return this.web.$("#_phone");
+    return browser.$("#_phone");
   }
 
   public get masukSelanjutnyaBtn() {
-    return this.web.$("#btn-check-credential");
+    return browser.$("#btn-check-credential");
   }
 
   public get bottomAlert() {
-    return this.web.$("//div[contains(@class, 'toastify-bottom')]");
+    return browser.$("//div[contains(@class, 'toastify-bottom')]");
   }
 
   /* --- ACTIONS --- */
@@ -62,3 +58,5 @@ export class GlobalPage extends BasePage {
     await this.masukSelanjutnyaBtn.click();
   }
 }
+
+export default new GlobalPage();

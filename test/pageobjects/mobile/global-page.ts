@@ -1,13 +1,9 @@
 import BasePage from "./base-page";
 
-export default class GlobalPage extends BasePage {
-  constructor(mobile: WebdriverIO.Browser) {
-    super(mobile);
-  }
-
+class GlobalPage extends BasePage {
   /* --- LOCATORS --- */
   public bottomNavMenu(menuName: string) {
-    return this.mobile.$(`//android.widget.ImageView[@content-desc="${menuName}"]`);
+    return browser.$(`//android.widget.ImageView[@content-desc="${menuName}"]`);
   }
 
   /* --- ACTIONS --- */
@@ -18,3 +14,5 @@ export default class GlobalPage extends BasePage {
     await menu.click();
   }
 }
+
+export default new GlobalPage();

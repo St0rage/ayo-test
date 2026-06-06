@@ -16,5 +16,5 @@
     // "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["test", "wdio.conf.ts"]
+  "include": ["test", "wdio.conf.ts", "wdio.web.conf.ts", "wdio.mobile.conf.ts", "wdio.db.conf.ts"]
 }

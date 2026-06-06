@@ -1,18 +1,12 @@
 import { expect } from "@wdio/globals";
-import { GlobalPage } from "../../pageobjects/web/global-page";
-import { VerificationPage } from "../../pageobjects/web/verification-page";
+import globalPage from "../../pageobjects/web/global-page";
+import verificationPage from "../../pageobjects/web/verification-page";
 
 describe("Register", () => {
   const baseUrl = "https://ayo.co.id/";
-  let web: WebdriverIO.Browser;
-  let globalPage: GlobalPage;
-  let verificationPage: VerificationPage;
 
   beforeEach(async () => {
-    web = multiRemoteBrowser.getInstance("web");
-    globalPage = new GlobalPage(web);
-    verificationPage = new VerificationPage(web);
-    await web.reloadSession();
+    await browser.reloadSession();
   });
 
   it("Register dengan email invalid - REG_001", async () => {

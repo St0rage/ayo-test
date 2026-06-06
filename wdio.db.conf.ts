@@ -1,8 +1,4 @@
-import { config as cfg } from "dotenv";
-
-cfg();
-
-export const config: WebdriverIO.MultiremoteConfig = {
+export const config: WebdriverIO.Config = {
   //
   // ====================
   // Runner Configuration
@@ -26,11 +22,8 @@ export const config: WebdriverIO.MultiremoteConfig = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/**/*.ts"],
-  suites: {
-    web: ["./test/specs/web/*.ts"],
-    mobile: ["./test/specs/mobile/*.ts"],
-  },
+  specs: ["./test/specs/database/*.ts"],
+
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -57,26 +50,14 @@ export const config: WebdriverIO.MultiremoteConfig = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  capabilities: {
-    web: {
-      capabilities: {
-        browserName: "chrome",
-        "goog:chromeOptions": {
-          args: ["--start-maximized"],
-        },
+  capabilities: [
+    {
+      browserName: "chrome",
+      "goog:chromeOptions": {
+        args: ["headless"],
       },
     },
-    mobile: {
-      capabilities: {
-        platformName: "Android",
-        "appium:automationName": "UiAutomator2",
-        "appium:deviceName": process.env.PLATFORM_NAME as string | "SAMSUNG",
-        "appium:appPackage": "coid.ayo.ayo_mobile_app",
-        "appium:appActivity": ".MainActivity",
-        "appium:noReset": true,
-      },
-    },
-  },
+  ],
 
   //
   // ===================
@@ -125,14 +106,7 @@ export const config: WebdriverIO.MultiremoteConfig = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: [
-    [
-      "appium",
-      {
-        command: "appium",
-      },
-    ],
-  ],
+  // services: [],
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

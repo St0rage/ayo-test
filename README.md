@@ -1,22 +1,25 @@
 ## 1. Overview
 
-Project ini merupakan automation technical test pada aplikasi web dan mobile Ayo Indonesia yang dibuat menggunakan framework WebdriverIO dengan bahasa pemrograman TypeScript.
+Project ini merupakan automation technical test pada aplikasi web dan mobile Ayo Indonesia, serta dilengkapi dengan simulasi database untuk mendukung pengujian data. Automation ini dibangun menggunakan framework WebdriverIO dengan bahasa pemrograman TypeScript.
 
-Tujuan dari project ini adalah untuk melakukan validasi otomatis terhadap fitur-fitur utama aplikasi. Framework ini dirancang menggunakan pendekatan Page Object Model (POM) untuk meningkatkan maintainability, readability, dan reusability dari automation script.
+Tujuan dari project ini adalah untuk melakukan validasi otomatis terhadap fitur-fitur utama aplikasi, termasuk validasi data pada level UI maupun database. Framework ini dirancang dengan pendekatan Page Object Model (POM) sehingga meningkatkan maintainability, readability, dan reusability script automation.
 
-Automation test yang tersedia mencakup pengujian fungsional pada aplikasi web maupun mobile, seperti proses registrasi/login pengguna, navigasi halaman, serta verifikasi pesan validasi yang ditampilkan oleh sistem.
+Automation test yang tersedia mencakup pengujian fungsional pada aplikasi web dan mobile, seperti proses registrasi dan login pengguna, navigasi antar halaman, serta verifikasi pesan validasi yang ditampilkan oleh sistem.
+
+Selain itu, project ini juga dilengkapi dengan database testing yang berfokus pada proses booking, yang digunakan untuk memastikan bahwa data booking yang tersimpan di database sesuai dengan kriteria yang telah ditentukan pada test case.
 
 ---
 
 ## 2. Technology Stack
 
-| Technology | Description |
-|------------|-------------|
-| TypeScript | Bahasa pemrograman utama |
-| WebdriverIO | Automation testing framework |
-| Node.js | Runtime environment |
-| Mocha | Test runner |
-| Appium | Mobile automation framework |
+| Technology  | Description                              |
+| ----------- | ---------------------------------------- |
+| TypeScript  | Bahasa pemrograman utama                 |
+| WebdriverIO | Automation testing framework             |
+| Node.js     | Runtime environment                      |
+| Mocha       | Test runner                              |
+| Appium      | Mobile automation framework              |
+| PostgreSQL  | Database untuk testing dan validasi data |
 
 ---
 
@@ -27,6 +30,9 @@ ayo-test
 │
 ├── scenario_docs
 │   └── ayo_test_scenario.xlsx
+│
+├── sql
+│   └── db.sql
 │
 ├── test
 │   ├── pageobjects
@@ -41,20 +47,26 @@ ayo-test
 │   │       ├── global-page.ts
 │   │       └── verification-page.ts
 │   │
-│   └── specs
-│       ├── mobile
-│       │   ├── login-mobile.ts
-│       │   └── register-mobile.ts
-│       │
-│       └── web
-│           ├── login-web.ts
-│           └── register-web.ts
+│   ├── specs
+│   │   ├── mobile
+│   │   │   ├── login-mobile.ts
+│   │   │   └── register-mobile.ts
+│   │   │
+│   │   └── web
+│   │       ├── login-web.ts
+│   │       └── register-web.ts
+│   │
+│   └── utils
+│       └── database.ts
 │
-├── package.json
-├── tsconfig.json
-├── wdio.conf.ts
 ├── .env-example
-└── README.md
+├── package.json
+├── README.md
+├── tsconfig.json
+├── wdio.db.conf.ts
+├── wdio.mobile.conf.ts
+└── wdio.web.conf.ts
+
 ```
 
 ### Folder Description
@@ -67,9 +79,17 @@ Berisi locator dan method yang digunakan untuk berinteraksi dengan halaman aplik
 
 Berisi test scenario dan test case automation.
 
+#### `utils`
+
+Berisi kumpulan file helper yang digunakan untuk mendukung proses automation testing, seperti fungsi utilitas yang dapat digunakan ulang di berbagai test case.
+
 #### `scenario_docs`
 
 Berisi dokumen test scenario yang digunakan sebagai referensi dalam pembuatan automation script.
+
+#### `sql`
+
+Berisi script SQL untuk pembuatan tabel, relasi, constraint, dan data awal yang digunakan dalam pengujian.
 
 ---
 
@@ -145,6 +165,12 @@ Verifikasi instalasi:
 adb version
 ```
 
+### PostgreSQL Database
+
+Project ini menggunakan PostgreSQL untuk kebutuhan validasi data booking pada database.
+
+Pastikan PostgreSQL telah terinstall dan service database dalam keadaan berjalan.
+
 ---
 
 ## 5. Installation
@@ -167,6 +193,10 @@ cd ayo-test
 npm install
 ```
 
+### Database Setup
+
+Jalankan file SQL yang tersedia pada folder sql untuk membuat tabel dan data awal.
+
 ---
 
 ## 6. Environment Configuration
@@ -176,7 +206,14 @@ Copy file `.env-example` menjadi `.env` pada root project.
 Contoh:
 
 ```env
-DEVICE_NAME="<nama device android>"
+# ANDROID DEVICE
+DEVICE_NAME="<nama_device_android>"
+# POSTGRE DB
+DB_HOST=<host_postgre_db default localhost>
+DB_PORT=<port_postgre_db default 5432>
+DB_DATABASE=<nama_database_postgre_db>
+DB_USER=<user_postgre_db>
+DB_PASSWORD=<password_postgre_db>
 ```
 
 Sesuaikan nilai konfigurasi dengan environment yang digunakan.
@@ -185,34 +222,20 @@ Sesuaikan nilai konfigurasi dengan environment yang digunakan.
 
 ## 7. Running Test
 
-### Menjalankan Seluruh Test
-
-WebdriverIO:
+### Menjalankan Seluruh Test Web
 
 ```bash
-npx wdio run wdio.conf.ts
+npx wdio run wdio.web.conf.ts
 ```
 
-### Menjalankan Test Suite Tertentu
-
-WebdriverIO:
+### Menjalankan Seluruh Test Mobile
 
 ```bash
-npx wdio run wdio.conf.ts --suite web
+npx wdio run wdio.mobile.conf.ts
 ```
 
-```bash
-npx wdio run wdio.conf.ts --suite mobile
-```
-
-### Menjalankan Test File Tertentu
-
-WebdriverIO:
+### Menjalankan Seluruh Test Database
 
 ```bash
-npx wdio run wdio.conf.ts --spec login-mobile.ts
-```
-
-```bash
-npx wdio run wdio.conf.ts --spec login-web.ts
+npx wdio run wdio.db.conf.ts
 ```

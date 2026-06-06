@@ -1,25 +1,14 @@
 import { expect } from "@wdio/globals";
-import GlobalPage from "../../pageobjects/mobile/global-page";
-import LoginPage from "../../pageobjects/mobile/login-page";
-import VerificationPage from "../../pageobjects/mobile/verification-page";
+import globalPage from "../../pageobjects/mobile/global-page";
+import loginPage from "../../pageobjects/mobile/login-page";
+import verificationPage from "../../pageobjects/mobile/verification-page";
 
 describe("Register", () => {
   const appPackage = "coid.ayo.ayo_mobile_app";
   const appActivity = ".MainActivity";
-  let mobile: WebdriverIO.Browser;
-  let globalPage: GlobalPage;
-  let loginPage: LoginPage;
-  let verificationPage: VerificationPage;
-
-  beforeEach(async () => {
-    mobile = multiRemoteBrowser.getInstance("mobile");
-    globalPage = new GlobalPage(mobile);
-    loginPage = new LoginPage(mobile);
-    verificationPage = new VerificationPage(mobile);
-  });
 
   afterEach(async () => {
-    await mobile.terminateApp(appPackage);
+    await browser.terminateApp(appPackage);
   });
 
   it("Login dengan email invalid - LOG_001", async () => {
