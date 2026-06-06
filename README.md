@@ -48,6 +48,8 @@ ayo-test
 │   │       └── verification-page.ts
 │   │
 │   ├── specs
+│   │   ├── database
+│   │   │   └── booking.ts
 │   │   ├── mobile
 │   │   │   ├── login-mobile.ts
 │   │   │   └── register-mobile.ts
