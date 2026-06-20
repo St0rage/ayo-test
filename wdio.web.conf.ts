@@ -51,10 +51,10 @@ export const config: WebdriverIO.Config = {
   // https://saucelabs.com/platform/platform-configurator
   //
 
-  protocol: process.env.HUB_PROTO as string | "http",
-  hostname: process.env.HUB_HOSTNAME as string | "localhost",
-  port: Number(process.env.HUB_PORT) | 4444,
-  path: process.env.HUB_PATH as string | "/wd/hub",
+  protocol: (process.env.HUB_PROTO as string) ?? "http",
+  hostname: (process.env.HUB_HOSTNAME as string) ?? "localhost",
+  port: Number(process.env.HUB_PORT ?? 4444),
+  path: (process.env.HUB_PATH as string) ?? "/wd/hub",
 
   capabilities: [
     {
