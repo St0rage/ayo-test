@@ -242,5 +242,3 @@ npx wdio run wdio.mobile.conf.ts
 ```bash
 npx wdio run wdio.db.conf.ts
 ```
-
-# triger
