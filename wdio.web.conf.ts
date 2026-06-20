@@ -7,6 +7,7 @@ export const config: WebdriverIO.Config = {
   runner: "local",
   tsConfigPath: "./tsconfig.json",
 
+  cacheDir: "./tmp",
   //
   // ==================
   // Specify Test Files
@@ -53,7 +54,7 @@ export const config: WebdriverIO.Config = {
     {
       browserName: "chrome",
       "goog:chromeOptions": {
-        args: ["--start-maximized"],
+        args: ["--start-maximized", "--headless=new", "--window-size=1920,1080"],
       },
     },
   ],
