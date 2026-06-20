@@ -59,6 +59,7 @@ export const config: WebdriverIO.Config = {
     },
   ],
 
+  xvfbAutoInstall: true,
   //
   // ===================
   // Test Configurations
