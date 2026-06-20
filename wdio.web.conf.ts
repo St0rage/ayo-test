@@ -54,12 +54,19 @@ export const config: WebdriverIO.Config = {
     {
       browserName: "chrome",
       "goog:chromeOptions": {
-        args: ["--start-maximized", "--headless=new", "--window-size=1920,1080"],
+        args: [
+          "--start-maximized",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-dev-shm-usage",
+          "--disable-gpu",
+          "--window-size=1920,1080",
+        ],
       },
     },
   ],
 
-  xvfbAutoInstall: true,
+  // xvfbAutoInstall: true,
   //
   // ===================
   // Test Configurations
