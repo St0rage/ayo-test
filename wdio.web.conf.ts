@@ -1,3 +1,7 @@
+import { config as cfg } from "dotenv";
+
+cfg();
+
 export const config: WebdriverIO.Config = {
   //
   // ====================
