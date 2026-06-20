@@ -73,6 +73,7 @@ export const config: WebdriverIO.Config = {
     },
   ],
 
+  autoXvfb: false,
   // xvfbAutoInstall: true,
   //
   // ===================
