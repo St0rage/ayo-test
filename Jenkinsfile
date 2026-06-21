@@ -24,16 +24,8 @@ pipeline {
         stage("Test") {
             steps {
                 echo("Start Test")
-                sh("npx wdio ./wdio.web.conf.ts")
+                sh("npx wdio ./wdio.web.conf.ts --spec register-web.ts")
                 echo("Finish Test")
-            }
-        }
-        stage("Deploy") {
-            steps {
-                echo("Hello Deploy 1")
-                sleep(5)
-                echo("Hello Deploy 2")
-                echo("Hello Deploy 3")
             }
         }
     }
