@@ -4,6 +4,9 @@ pipeline {
             label "linux"
         }
     }
+    tools {
+        nodejs 'NodeJs 22.14.0'
+    }
     stages {
         stage("Build") {
             steps {
