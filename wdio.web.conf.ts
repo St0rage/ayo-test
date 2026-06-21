@@ -66,11 +66,11 @@ export const config: WebdriverIO.Config = {
       "goog:chromeOptions": {
         args: [
           "--start-maximized",
-          // "--headless=new",
-          // "--no-sandbox",
-          // "--disable-dev-shm-usage",
-          // "--disable-gpu",
-          // "--window-size=1920,1080",
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-dev-shm-usage",
+          "--disable-gpu",
+          "--window-size=1920,1080",
         ],
       },
       "wdio:enforceWebDriverClassic": true,
