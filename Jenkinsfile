@@ -7,6 +7,12 @@ pipeline {
     tools {
         nodejs 'NodeJs 22.14.0'
     }
+    environment {
+        HUB_PROTO = 'http'
+        HUB_HOSTNAME = 'selenium-hub'
+        HUB_PORT = '4444'
+        HUB_PATH = '/wd/hub'
+    }
     stages {
         stage("Build") {
             steps {
@@ -18,10 +24,6 @@ pipeline {
         stage("Test") {
             steps {
                 echo("Start Test")
-                sh("export HUB_PROTO=http")
-                sh("export HUB_HOSTNAME=selenium-hub")
-                sh("export HUB_PORT=4444")
-                sh("export HUB_PATH='/wd/hub'")
                 sh("npx wdio ./wdio.web.conf.ts")
                 echo("Finish Test")
             }
