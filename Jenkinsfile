@@ -7,18 +7,20 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                echo("Hello Build 1")
-                sleep(5)
-                echo("Hello Build 2")
-                echo("Hello Build 3")
+                echo("Start Build")
+                sh("npm install")
+                echo("Finish Build")
             }
         }
         stage("Test") {
             steps {
-                echo("Hello Test 1")
-                sleep(5)
-                echo("Hello Test 2")
-                echo("Hello Test 3")
+                echo("Start Test")
+                sh("export HUB_PROTO=http")
+                sh("export HUB_HOSTNAME=selenium-hub")
+                sh("export HUB_PORT=4444")
+                sh("export HUB_PATH='/wd/hub'")
+                sh("npx wdio ./wdio.web.conf.ts")
+                echo("Finish Test")
             }
         }
         stage("Deploy") {
