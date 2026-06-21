@@ -48,17 +48,17 @@ export const config: WebdriverIO.Config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 1,
+  maxInstances: 2,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
 
-  protocol: (process.env.HUB_PROTO as string) ?? "http",
-  hostname: (process.env.HUB_HOSTNAME as string) ?? "localhost",
-  port: Number(process.env.HUB_PORT ?? 4444),
-  path: (process.env.HUB_PATH as string) ?? "/wd/hub",
+  // protocol: (process.env.HUB_PROTO as string) ?? "http",
+  // hostname: (process.env.HUB_HOSTNAME as string) ?? "localhost",
+  // port: Number(process.env.HUB_PORT ?? 4444),
+  // path: (process.env.HUB_PATH as string) ?? "/wd/hub",
 
   capabilities: [
     {
@@ -66,11 +66,11 @@ export const config: WebdriverIO.Config = {
       "goog:chromeOptions": {
         args: [
           "--start-maximized",
-          "--headless=new",
-          "--no-sandbox",
-          "--disable-dev-shm-usage",
-          "--disable-gpu",
-          "--window-size=1920,1080",
+          // "--headless=new",
+          // "--no-sandbox",
+          // "--disable-dev-shm-usage",
+          // "--disable-gpu",
+          // "--window-size=1920,1080",
         ],
       },
       "wdio:enforceWebDriverClassic": true,
