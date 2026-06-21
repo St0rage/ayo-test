@@ -30,6 +30,15 @@ pipeline {
         }
         stage("Test") {
             steps {
+
+                script {
+                    def data = [
+                        "firstName" : "Dani",
+                        "lastName" : "Yudistira"
+                    ]
+                    writeJSON(file: "data-json", json: data)
+                }
+                
                 echo("Start Test")
                 sh("npx wdio ./wdio.web.conf.ts --spec register-web.ts")
                 echo("Finish Test")
