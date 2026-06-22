@@ -12,7 +12,7 @@ pipeline {
         AUTHOR = "Dani Yudistira Maulana"
     }
     options {
-        disableConcurentBuilds()
+        disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
     }
     stages {
