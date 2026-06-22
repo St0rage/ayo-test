@@ -51,7 +51,7 @@ pipeline {
                 }
                 
                 echo("Start Test")
-                sh("npx wdio ./wdio.web.conf.ts --spec register-web.ts")
+                sh("npx wdio ./wdio.web.conf.ts --spec jenkins-test.ts")
                 echo("Finish Test")
             }
         }
