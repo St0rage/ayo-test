@@ -13,6 +13,9 @@ pipeline {
     }
     stages {
         stage("Prepare") {
+            environment {
+                APP = credentials("dani_rahasia")
+            }
             agent {
                 node {
                     label "linux"
@@ -22,7 +25,9 @@ pipeline {
                 echo("Author ${AUTHOR}")
                 echo("Start Job : ${env.JOB_NAME}")
                 echo("Start Build : ${env.BUILD_NUMBER}")
-                echo("Start Build : ${env.BRANCH_NUMBER}")
+                echo("Branch Name : ${env.BRANCH_NUMBER}")
+                echo("App User : ${APP_USR}")
+                echo("App Password : ${APP_PSW}")
             }
         }
         stage("Build") {
