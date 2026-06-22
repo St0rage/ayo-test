@@ -12,11 +12,11 @@ pipeline {
         AUTHOR = "Dani Yudistira Maulana"
     }
     parameters {
-        string(name: "NAME", devaultValue: "Guest", description: "What is your name")
-        text(name: "DESCRIPTION", devaultValue: "Guest", description: "Tell me about you")
-        booleanParam(name: "DEPLOY", devaultValue: false, description: "Need to Deploy?")
+        string(name: "NAME", defaultValue: "Guest", description: "What is your name")
+        text(name: "DESCRIPTION", defaultValue: "Guest", description: "Tell me about you")
+        booleanParam(name: "DEPLOY", defaultValue: false, description: "Need to Deploy?")
         choice(name: "SOCIAL_MEDIA", choices: ['Instagram', 'Facebook', 'TikTok'], description: "Which Social Media")
-        password(name: "SECRET", devaultValue: "", description: "Encrypt Key")
+        password(name: "SECRET", defaultValue: "", description: "Encrypt Key")
     }
     options {
         disableConcurrentBuilds()
