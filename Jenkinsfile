@@ -11,11 +11,33 @@ pipeline {
     environment {
         AUTHOR = "Dani Yudistira Maulana"
     }
+    parameters {
+        string(name: "NAME", devaultValue: "Guest", description: "What is your name")
+        text(name: "DESCRIPTION", devaultValue: "Guest", description: "Tell me about you")
+        booleanParam(name: "DEPLOY", devaultValue: false, description: "Need to Deploy?")
+        choice(name: "SOCIAL_MEDIA", choices: ['Instagram', 'Facebook', 'TikTok'], description: "Which Social Media")
+        password(name: "SECRET", devaultValue: "", description: "Encrypt Key")
+    }
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
     }
     stages {
+        stage("Paremeter") {
+            agent {
+                node {
+                    label "linux"
+                }
+            }
+            steps {
+                echo("Hello ${params.NAME}")
+                echo("You description is ${params.DESCRIPTION}")
+                echo("Your social media is ${params.SOCIAL_MEDIA}")
+                echo("Need to deploy : ${params.DEPLOY} to deploy!")
+                echo("Your secret is ${params.SECRET}")
+            }
+        }
+
         stage("Prepare") {
             environment {
                 APP = credentials("dani_rahasia")
