@@ -7,12 +7,12 @@ pipeline {
     tools {
         nodejs 'NodeJs 22.14.0'
     }
-    environment {
-        HUB_PROTO = 'http'
-        HUB_HOSTNAME = 'selenium-hub'
-        HUB_PORT = '4444'
-        HUB_PATH = '/wd/hub'
-    }
+    // environment {
+    //     HUB_PROTO = ${SELENIUM_HUB_PROTO}
+    //     HUB_HOSTNAME = ${SELENIUM_HUB_HOSTNAME}
+    //     HUB_PORT = ${SELENIUM_HUB_PORT}
+    //     HUB_PATH = ${SELENIUM_HUB_PATH}
+    // }
     stages {
         stage("Build") {
             steps {
