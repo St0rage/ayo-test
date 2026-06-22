@@ -8,12 +8,9 @@ pipeline {
     tools {
         nodejs 'NodeJs 22.14.0'
     }
-    // environment {
-    //     HUB_PROTO = ${SELENIUM_HUB_PROTO}
-    //     HUB_HOSTNAME = ${SELENIUM_HUB_HOSTNAME}
-    //     HUB_PORT = ${SELENIUM_HUB_PORT}
-    //     HUB_PATH = ${SELENIUM_HUB_PATH}
-    // }
+    environment {
+        AUTHOR = "Dani Yudistira Maulana"
+    }
     stages {
         stage("Prepare") {
             agent {
@@ -22,6 +19,7 @@ pipeline {
                 }
             }
             steps {
+                echo("Author ${AUTHOR}")
                 echo("Start Job : ${env.JOB_NAME}")
                 echo("Start Build : ${env.BUILD_NUMBER}")
                 echo("Start Build : ${env.BRANCH_NUMBER}")
