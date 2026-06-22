@@ -15,6 +15,18 @@ pipeline {
     //     HUB_PATH = ${SELENIUM_HUB_PATH}
     // }
     stages {
+        stage("Prepare") {
+            agent {
+                node {
+                    label "linux"
+                }
+            }
+            steps {
+                echo("Start Job : ${env.JOB_NAME}")
+                echo("Start Build : ${env.BUILD_NUMBER}")
+                echo("Start Build : ${env.BRANCH_NUMBER}")
+            }
+        }
         stage("Build") {
             agent {
                 node {
