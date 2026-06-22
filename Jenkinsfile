@@ -11,6 +11,10 @@ pipeline {
     environment {
         AUTHOR = "Dani Yudistira Maulana"
     }
+    options {
+        disableConcurentBuilds()
+        timeout(time: 10, unit: 'SECOND')
+    }
     stages {
         stage("Prepare") {
             environment {
