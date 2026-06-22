@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        node {
-            label "linux"
-        }
-    }
+    // agent {
+    //     node {
+    //         label "linux"
+    //     }
+    // }
+    agent none
     tools {
         nodejs 'NodeJs 22.14.0'
     }
@@ -15,6 +16,11 @@ pipeline {
     // }
     stages {
         stage("Build") {
+            agent {
+                node {
+                    label "linux"
+                }
+            }
             steps {
 
                 script {
@@ -29,6 +35,11 @@ pipeline {
             }
         }
         stage("Test") {
+            agent {
+                node {
+                    label "linux"
+                }
+            }
             steps {
 
                 script {
@@ -42,6 +53,19 @@ pipeline {
                 echo("Start Test")
                 sh("npx wdio ./wdio.web.conf.ts --spec register-web.ts")
                 echo("Finish Test")
+            }
+        }
+        stage("Deploy") {
+            agent {
+                node {
+                    label "linux"
+                }
+            }
+            steps{
+                echo("Hello Deploy 1")
+                sleep(5)
+                echo("Hello Deploy 2")
+                echo("Hello Deploy 3")
             }
         }
     }
