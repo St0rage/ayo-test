@@ -40,19 +40,20 @@ pipeline {
                         values "32", "64"
                     }
                 }
-            }
-            stages {
-                stage("OS Setup") {
-                    agent {
-                        node {
-                            label "linux"
+                stages {
+                    stage("OS Setup") {
+                        agent {
+                            node {
+                                label "linux"
+                            }
                         }
-                    }
-                    steps {
-                        echo()"Setup ${OS} : ${ARCH}")
+                        steps {
+                            echo("Setup ${OS} : ${ARCH}")
+                        }
                     }
                 }
             }
+            
         }
         stage("Preparation") {
             parallel {
