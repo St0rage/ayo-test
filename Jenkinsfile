@@ -28,6 +28,32 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
     stages {
+        stage("OS Setup") {
+            matrix {
+                axes {
+                    axis {
+                        name "OS"
+                        values "linux", "windows", "mac"
+                    }
+                    axis {
+                        name "ARCH"
+                        values "32", "64"
+                    }
+                }
+            }
+            stages {
+                stage("OS Setup") {
+                    agent {
+                        node {
+                            label "linux"
+                        }
+                    }
+                    steps {
+                        echo()"Setup ${OS} : ${ARC}")
+                    }
+                }
+            }
+        }
         stage("Preparation") {
             parallel {
                 stage("Prepare Java") {
