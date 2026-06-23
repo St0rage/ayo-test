@@ -11,9 +11,11 @@ pipeline {
     environment {
         AUTHOR = "Dani Yudistira Maulana"
     }
-    triggers {
-        cron("*/5 * * * *")
-    }
+    // triggers {
+    //     cron("*/5 * * * *")
+    //     poolSCM("*/5 * * * *")
+    //     upstream(upstream: 'job1,job2', threshold: hudson.model.Result.SUCCESS)
+    // }
     parameters {
         string(name: "NAME", defaultValue: "Guest", description: "What is your name")
         text(name: "DESCRIPTION", defaultValue: "Guest", description: "Tell me about you")
@@ -101,6 +103,11 @@ pipeline {
             }
         }
         stage("Deploy") {
+            input {
+                message "Can we deploy?"
+                ok "Yes, of course"
+                submitter "tars,dani"
+            }
             agent {
                 node {
                     label "linux"
