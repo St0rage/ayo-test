@@ -36,7 +36,7 @@ pipeline {
                         values "linux", "windows", "mac"
                     }
                     axis {
-                        name "ARCH"
+                        name "ARC"
                         values "32", "64"
                     }
                 }
@@ -47,7 +47,7 @@ pipeline {
                             value "mac"
                         }
                         axis {
-                            name "ARCH"
+                            name "ARC"
                             value "32"
                         }
                     }
@@ -60,7 +60,7 @@ pipeline {
                             }
                         }
                         steps {
-                            echo("Setup ${OS} : ${ARCH}")
+                            echo("Setup ${OS} : ${ARC}")
                         }
                     }
                 }
