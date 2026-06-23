@@ -28,6 +28,25 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
     stages {
+        stage("Preparation") {
+            agent {
+                node {
+                    label "linux"
+                }
+            }
+            stages {
+                stage("Prepare Java") {
+                    steps {
+                        echo("Prepare Java")
+                    }
+                }
+                stage("Prepare Maven") {
+                    steps {
+                        echo("Prepare Maven")
+                    }
+                }
+            }
+        }
         stage("Paremeter") {
             agent {
                 node {
